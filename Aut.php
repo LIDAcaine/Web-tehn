@@ -72,8 +72,8 @@ if (!$mysql)die("Error connect to database!");
     <?php
     if(isset($_POST['goto']))
     {
-    $login = ($_POST['login']);
-    $pass = ($_POST['pass']);
+    $login = mysqli_real_escape_string($mysql, $_POST['login']);
+    $pass = mysqli_real_escape_string($mysql, $_POST['pass']);
 
     $result = mysqli_query($mysql, "SELECT * FROM `клиенты` WHERE `клиенты`.`Паспортные данные` = '$login' AND `клиенты`.`Пароль` ='$pass'");
     if ($user = mysqli_fetch_assoc($result)) {
